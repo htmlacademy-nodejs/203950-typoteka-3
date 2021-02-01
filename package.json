@@ -1,0 +1,25 @@
+{
+  "name": "203950-typoteka-3",
+  "version": "1.0.0",
+  "description": "typoteka",
+  "main": "./src/service/service.js",
+  "scripts": {
+    "test": "npm run eslint",
+    "start": "node ./src/service/service.js",
+    "eslint": "eslint --ext .js src/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/DmytriyZahrebelny/203950-typoteka-3.git"
+  },
+  "author": "Dima",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/DmytriyZahrebelny/203950-typoteka-3/issues"
+  },
+  "homepage": "https://github.com/DmytriyZahrebelny/203950-typoteka-3#readme",
+  "devDependencies": {
+    "eslint": "7.19.0",
+    "eslint-config-htmlacademy": "0.6.0"
+  }
+}
