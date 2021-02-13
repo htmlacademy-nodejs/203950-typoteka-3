@@ -6,6 +6,7 @@
   "scripts": {
     "test": "npm run eslint",
     "start": "node ./src/service/service.js",
+    "start.dev": "nodemon ./src/main.js",
     "eslint": "eslint --ext .js src/"
   },
   "repository": {
@@ -20,6 +21,10 @@
   "homepage": "https://github.com/DmytriyZahrebelny/203950-typoteka-3#readme",
   "devDependencies": {
     "eslint": "7.19.0",
-    "eslint-config-htmlacademy": "0.6.0"
+    "eslint-config-htmlacademy": "0.6.0",
+    "nodemon": "2.0.7"
+  },
+  "dependencies": {
+    "chalk": "4.1.0"
   }
 }
