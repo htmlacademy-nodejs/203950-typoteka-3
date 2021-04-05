@@ -12,7 +12,7 @@ module.exports = (app, articleService, commentService) => {
 
   route.get(`/`, async (req, res) => {
     const categories = await articleService.findAll();
-    res.status(HttpCode.OK)
+    return res.status(HttpCode.OK)
       .json(categories);
   });
 
@@ -54,11 +54,11 @@ module.exports = (app, articleService, commentService) => {
     const article = articleService.drop(articleId);
 
     if (!article) {
-      res.status(HttpCode.status(HttpCode.NOT_FOUND)
+      return res.status(HttpCode.status(HttpCode.NOT_FOUND)
       .send(`Not found`));
     }
 
-    res.status(HttpCode.OK)
+    return res.status(HttpCode.OK)
       .json(article);
   });
 
@@ -67,11 +67,11 @@ module.exports = (app, articleService, commentService) => {
     const comments = commentService.findAll(articleId);
 
     if (!comments) {
-      res.status(HttpCode.status(HttpCode.NOT_FOUND)
+      return res.status(HttpCode.status(HttpCode.NOT_FOUND)
       .send(`Not found`));
     }
 
-    res.status(HttpCode.OK)
+    return res.status(HttpCode.OK)
       .json(comments);
   });
 
@@ -79,7 +79,7 @@ module.exports = (app, articleService, commentService) => {
     const {articleId} = req.params;
     const comments = commentService.create(articleId, req.body);
 
-    res.status(HttpCode.CREATED)
+    return res.status(HttpCode.CREATED)
       .json(comments);
   });
 
@@ -88,11 +88,11 @@ module.exports = (app, articleService, commentService) => {
     const comment = commentService.drop(articleId, commentId);
 
     if (!comment) {
-      res.status(HttpCode.status(HttpCode.NOT_FOUND)
+      return res.status(HttpCode.status(HttpCode.NOT_FOUND)
       .send(`Not found`));
     }
 
-    res.status(HttpCode.OK)
+    return res.status(HttpCode.OK)
       .json(comment);
   });
 };
