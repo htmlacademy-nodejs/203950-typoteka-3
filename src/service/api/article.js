@@ -54,8 +54,8 @@ module.exports = (app, articleService, commentService) => {
     const article = articleService.drop(articleId);
 
     if (!article) {
-      return res.status(HttpCode.status(HttpCode.NOT_FOUND)
-      .send(`Not found`));
+      return res.status(HttpCode.NOT_FOUND)
+        .send(`Not found`);
     }
 
     return res.status(HttpCode.OK)
@@ -77,10 +77,15 @@ module.exports = (app, articleService, commentService) => {
 
   route.post(`/:articleId/comments`, commentValidator, (req, res) => {
     const {articleId} = req.params;
-    const comments = commentService.create(articleId, req.body);
+    const comment = commentService.create(articleId, req.body);
+
+    if (!comment) {
+      return res.status(HttpCode.NOT_FOUND)
+        .send(`Not found`);
+    }
 
     return res.status(HttpCode.CREATED)
-      .json(comments);
+      .json(comment);
   });
 
   route.delete(`/:articleId/comments/:commentId`, (req, res) => {
@@ -88,8 +93,8 @@ module.exports = (app, articleService, commentService) => {
     const comment = commentService.drop(articleId, commentId);
 
     if (!comment) {
-      return res.status(HttpCode.status(HttpCode.NOT_FOUND)
-      .send(`Not found`));
+      return res.status(HttpCode.NOT_FOUND)
+        .send(`Not found`);
     }
 
     return res.status(HttpCode.OK)

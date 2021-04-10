@@ -39,6 +39,10 @@ class ArticleService {
     const oldArticle = this._article
       .find((item) => item.id === id);
 
+    if (!oldArticle) {
+      return null;
+    }
+
     return Object.assign(oldArticle, article);
   }
 }

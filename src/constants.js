@@ -4,6 +4,11 @@ const ExitCode = {
   success: 1,
 };
 
+const Env = {
+  DEVELOPMENT: `development`,
+  PRODUCTION: `production`
+};
+
 const DEFAULT_COMMAND = `--version`;
 const USER_ARGV_INDEX = 2;
 const API_PREFIX = `/api`;
@@ -26,5 +31,6 @@ module.exports = {
   USER_ARGV_INDEX,
   MAX_ID_LENGTH,
   HttpCode,
-  API_PREFIX
+  API_PREFIX,
+  Env,
 };

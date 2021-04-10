@@ -2,6 +2,10 @@
 
 const fs = require(`fs`).promises;
 const FILENAME = `mocks.json`;
+const {getLogger} = require(`../lib/logger`);
+
+const logger = getLogger({name: `mock`});
+
 let data = null;
 
 module.exports = async () => {
@@ -13,7 +17,7 @@ module.exports = async () => {
     const fileContent = await fs.readFile(FILENAME);
     data = JSON.parse(fileContent);
   } catch (err) {
-    console.log(err);
+    logger.error(err);
     return Promise.reject(err);
   }
 
