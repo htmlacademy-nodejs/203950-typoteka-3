@@ -67,8 +67,8 @@ module.exports = (app, articleService, commentService) => {
     const comments = commentService.findAll(articleId);
 
     if (!comments) {
-      return res.status(HttpCode.status(HttpCode.NOT_FOUND)
-      .send(`Not found`));
+      return res.status(HttpCode.NOT_FOUND)
+        .send(`Not found`);
     }
 
     return res.status(HttpCode.OK)

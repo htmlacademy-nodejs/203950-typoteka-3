@@ -1,11 +1,12 @@
 'use strict';
-module.exports.mockArticles = [
+
+const mockArticles = [
   {
     "id": `tL9tPm`,
     "announce": `Помните, небольшое количество ежедневных упражнений лучше, чем один раз, но много. Он написал больше 30 хитов. Ёлки — это не просто красивое дерево. Это прочная древесина. Процессор заслуживает особого внимания. Он обязательно понравится геймерам со стажем.`,
     "fullText": `Бороться с прокрастинацией несложно. Просто действуйте. Маленькими шагами. Достичь успеха помогут ежедневные повторения. Собрать камни бесконечности легко, если вы прирожденный герой. Из под его пера вышло 8 платиновых альбомов.`,
     "title": `Рок — это протест`,
-    "сategory": [`Деревья`, `За жизнь`],
+    "сategory": [`Деревья`],
     "createdDate": `2021-1-3 23:37:16`,
     "comments": [
       {
@@ -89,7 +90,7 @@ module.exports.mockArticles = [
     "announce": `Освоить вёрстку несложно. Возьмите книгу новую книгу и закрепите все упражнения на практике. Он написал больше 30 хитов. Первая большая ёлка была установлена только в 1938 году. Альбом стал настоящим открытием года. Мощные гитарные рифы и скоростные соло-партии не дадут заскучать.`,
     "fullText": `Он написал больше 30 хитов. Как начать действовать? Для начала просто соберитесь. Альбом стал настоящим открытием года. Мощные гитарные рифы и скоростные соло-партии не дадут заскучать. Освоить вёрстку несложно. Возьмите книгу новую книгу и закрепите все упражнения на практике.`,
     "title": `Как начать программировать`,
-    "сategory": [`Помните, небольшое количество ежедневных упражнений лучше, чем один раз, но много.`],
+    "сategory": [`За жизнь`],
     "createdDate": `2021-2-1 5:38:10`,
     "comments": [
       {
@@ -99,3 +100,32 @@ module.exports.mockArticles = [
     ]
   }
 ];
+
+const mockArticlesCategories = mockArticles.reduce((acc, article) => {
+  return new Set([...acc, ...article.сategory]);
+}, new Set());
+
+const mockFirstArticleId = mockArticles[0].id;
+const mockSecondArticleId = mockArticles[1].id;
+const mockSecondArticleTitle = mockArticles[1].title;
+const mockArticleCommentId = mockArticles[1].comments[1].id;
+const mockNoExistId = `NOEXST`;
+const mockNotFound = `Not found with`;
+
+const mockInvalidArticle = {
+  category: `invalid`,
+  title: `invalid`,
+  announce: `invalid`,
+};
+
+module.exports = {
+  mockArticles,
+  mockArticlesCategories: Array.from(mockArticlesCategories),
+  mockFirstArticleId,
+  mockSecondArticleId,
+  mockSecondArticleTitle,
+  mockNoExistId,
+  mockNotFound,
+  mockInvalidArticle,
+  mockArticleCommentId,
+};
