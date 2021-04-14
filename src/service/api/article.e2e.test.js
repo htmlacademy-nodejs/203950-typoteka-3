@@ -4,7 +4,6 @@ const request = require(`supertest`);
 
 const {
   mockArticles,
-  mockArticlesCategories,
   mockFirstArticleId,
   mockSecondArticleId,
   mockSecondArticleTitle,
@@ -12,6 +11,7 @@ const {
   mockNoExistId,
   mockInvalidArticle,
   mockArticleCommentId,
+  mockNewArticle,
 } = require(`../../mocks`);
 const article = require(`./article`);
 const DataService = require(`../data-service/article`);
@@ -63,30 +63,24 @@ describe(`API /articles/:articleId GET`, () => {
 });
 
 describe(`API /articles POST`, () => {
-  const newArticle = {
-    category: `Без рамки`,
-    title: `Дам погладить котика`,
-    announce: `Дам погладить котика. Дорого. Не гербалайф`,
-    fullText: `Первая большая ёлка была установлена только в 1938 году`,
-  };
   const app = createAPI();
   let response;
 
   beforeAll(async () => {
     response = await request(app)
       .post(`/articles`)
-      .send(newArticle);
+      .send(mockNewArticle);
   });
 
   test(`Status code 201`, () => expect(response.statusCode).toBe(HttpCode.CREATED));
-  test(`Returns article created`, () => expect(response.body).toEqual(expect.objectContaining(newArticle)));
+  test(`Returns article created`, () => expect(response.body).toEqual(expect.objectContaining(mockNewArticle)));
   test(`Articles count is changed`, () => request(app)
     .get(`/articles`)
     .expect((res) => expect(res.body.length).toBe(mockArticles.length))
   );
   test(`Without any required property response code is 400`, async () => {
-    for (const key of Object.keys(newArticle)) {
-      const badArticle = {...newArticle};
+    for (const key of Object.keys(mockNewArticle)) {
+      const badArticle = {...mockNewArticle};
       delete badArticle[key];
       await request(app)
         .post(`/articles`)
@@ -97,26 +91,20 @@ describe(`API /articles POST`, () => {
 });
 
 describe(`API /articles PUT`, () => {
-  const newArticle = {
-    category: `Без рамки`,
-    title: `Дам погладить котика`,
-    announce: `Дам погладить котика. Дорого. Не гербалайф`,
-    fullText: `Первая большая ёлка была установлена только в 1938 году`,
-  };
   const app = createAPI();
   let response;
 
   beforeAll(async () => {
     response = await request(app)
       .put(`/articles/${mockSecondArticleId}`)
-      .send(newArticle);
+      .send(mockNewArticle);
   });
 
   test(`Status code 200`, () => expect(response.statusCode).toBe(HttpCode.OK));
-  test(`Returns changed article`, () => expect(response.body).toEqual(expect.objectContaining(newArticle)));
+  test(`Returns changed article`, () => expect(response.body).toEqual(expect.objectContaining(mockNewArticle)));
   test(`Article is really changed`, () => request(app)
     .get(`/articles/${mockSecondArticleId}`)
-    .expect((res) => expect(res.body.title).toBe(newArticle.title))
+    .expect((res) => expect(res.body.title).toBe(mockNewArticle.title))
   );
 
   test(`API returns status code 400 when trying to change an article with invalid data`, () => {
@@ -127,7 +115,7 @@ describe(`API /articles PUT`, () => {
   });
 
   test(`API returns status code 404 when trying to change non-existent article`, () => {
-    return request(app).put(`/articles/${mockNoExistId}`).send(newArticle).expect(HttpCode.NOT_FOUND);
+    return request(app).put(`/articles/${mockNoExistId}`).send(mockNewArticle).expect(HttpCode.NOT_FOUND);
   });
 });
 

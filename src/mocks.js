@@ -118,6 +118,13 @@ const mockInvalidArticle = {
   announce: `invalid`,
 };
 
+const mockNewArticle = {
+  category: `Без рамки`,
+  title: `Дам погладить котика`,
+  announce: `Дам погладить котика. Дорого. Не гербалайф`,
+  fullText: `Первая большая ёлка была установлена только в 1938 году`,
+};
+
 module.exports = {
   mockArticles,
   mockArticlesCategories: Array.from(mockArticlesCategories),
@@ -128,4 +135,5 @@ module.exports = {
   mockNotFound,
   mockInvalidArticle,
   mockArticleCommentId,
+  mockNewArticle,
 };
