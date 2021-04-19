@@ -1,11 +1,10 @@
 'use strict';
 
 const fs = require(`fs`).promises;
-const FILENAME = `mocks.json`;
 const {getLogger} = require(`../lib/logger`);
 
+const FILENAME = `mocks.json`;
 const logger = getLogger({name: `mock`});
-
 let data = null;
 
 module.exports = async () => {

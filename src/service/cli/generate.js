@@ -52,7 +52,7 @@ const generatePublications = (count, titles, sentences, categories, comments) =>
     announce: shuffle(sentences).slice(1, 5).join(` `),
     fullText: shuffle(sentences).slice(1, 5).join(` `),
     title: titles[getRandomInt(0, titles.length - 1)],
-    сategory: [sentences[getRandomInt(0, categories.length - 1)]],
+    сategory: [categories[getRandomInt(0, categories.length - 1)]],
     createdDate: randomTime(),
     comments: generateComments(getRandomInt(1, MAX_COMMENTS), comments)
   }))
