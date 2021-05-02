@@ -17,8 +17,8 @@ CREATE TABLE users(
 CREATE TABLE articles(
   id integer PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   announce varchar(255) NOT NULL,
+  title varchar(255) NOT NULL,
   fullText text NOT NULL,
-  sum integer NOT NULL,
   picture varchar(50),
   user_id integer NOT NULL,
   created_at timestamp DEFAULT current_timestamp,
